@@ -1,24 +1,22 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
-const HomeHeader = () => {
-    const [activieTab, setactiveTab] = useState('Delivery');
-
+const HomeHeader = (props) => {
 
     return (
         <View style={{ flexDirection: 'row', justifyContent: 'center', paddingTop: 5 }}>
             <HeaderButton text={"Delivery"}
                 btnColor={"black"}
                 textColor={"white"}
-                activieTab={activieTab}
-                setactiveTab={setactiveTab}
+                activieTab={props.activeTab}
+                setactiveTab={props.setActiveTab}
 
             />
             <HeaderButton text={"Pickup"}
                 btnColor={"black"}
                 textColor={"white"}
-                activieTab={activieTab}
-                setactiveTab={setactiveTab}
+                activieTab={props.activeTab}
+                setactiveTab={props.setActiveTab}
             />
         </View>
     )

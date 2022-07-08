@@ -42,7 +42,7 @@ const items = [
 ]
 
 export default function Catagories() {
-    const renderItem = ({ item }) => (
+    const renderItem = ({ item, index }) => (
         //<Item title={item.title} />
         <View style={{
             flexDirection: 'column', margin: 10, alignItems: 'center',
@@ -55,11 +55,10 @@ export default function Catagories() {
     return (
         <View style={{ backgroundColor: 'white', marginTop: 10 }}>
             <FlatList
-
                 horizontal
                 data={items}
                 renderItem={renderItem}
-                keyExtractor={item => items.id}
+                keyExtractor={(item, index) => index.toString()}
             />
         </View>
     )

@@ -1,62 +1,50 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, Image, View } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { TouchableOpacity } from 'react-native'
-const SearchBar = () => {
+const SearchBar = ({ setCity }) => {
+    const [text, onChangeText] = React.useState("Newyork");
+
+
     return (
-        <View
+
+        setCity(text),
+        < View
             style={{
 
-                margin: 15,
+                marginVertical: 15,
                 height: 50,
                 flexDirection: 'row',
-                alignItems: 'center',
-            }}
+                justifyContent: 'center',
+
+            }
+            }
+
         >
-            <GooglePlacesAutocomplete placeholder='search'
-                styles={{
-                    textInput: {
-                        backgroundColor: '#eee',
-                        borderRadius: 20,
-                        fontWeight: '800',
-                        alignItems: 'center',
-                        height: 45,
-                        fontSize: 20,
-                    },
-                    textInputContainer: {
-                        backgroundColor: '#eee',
-                        borderRadius: 20,
-                        alignItems: 'center',
+            <TextInput
+                onSubmitEditing={(event) => onChangeText(event.nativeEvent.text)}
+                placeholder={"Type Location Here"}
 
-                    }
+                style={{
+                    alignSelf: 'center',
+
+                    backgroundColor: '#eee',
+                    borderRadius: 20,
+                    width: '90%',
+                    height: 50,
+                    paddingHorizontal: 10,
+                    fontSize: 20,
+                    fontWeight: '900'
+
                 }}
-                renderLeftButton={() => (
-                    <View style={{ marginLeft: 10 }}>
-                        <Ionicons name='location-sharp' size={24} />
-                    </View>)
-                }
-                renderRightButton={() => (
-                    <View >
-                        <TouchableOpacity style={{
-                            marginRight: 8,
-                            backgroundColor: 'white',
-                            justifyContent: 'center',
-                            padding: 10,
-                            borderRadius: 20,
-                            flexDirection: 'row',
 
-                        }}>
-                            <AntDesign name='clockcircle' size={15} style={{ paddingRight: 5 }} />
-                            <Text>Search</Text>
-                        </TouchableOpacity>
-                    </View>
-                )
 
-                }
+
             />
-        </View>
+
+        </View >
     )
 }
 
