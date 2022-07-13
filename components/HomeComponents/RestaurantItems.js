@@ -1,19 +1,28 @@
 import { Image, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { useNavigation } from '@react-navigation/native'
 
-
-const RestaurantItems = (props) => {
-
+const RestaurantItems = ({ navigation, ...props }) => {
+//const navigation=useNavigation();
 
 
     return (
         <>
             {props.restaurantsData.map((item, index) =>
-                <TouchableOpacity activeOpacity={1} key={index}>
+                <TouchableOpacity activeOpacity={1} key={index} onPress={()=>navigation.navigate("About",{
+                    name: item.name,
+                    image: item.image_url,
+                    price: item.price,
+                    reviews: item.review_count,
+                    rating: item.rating,
+                    categories: item.categories,
+
+
+                })}>
                     <View style={{ marginTop: 10, marginBottom: 20, backgroundColor: 'white' }}>
                         <SingleRestaurant image={item.image_url} />
-                        <RestaurantInfo name={item.name} time={item.time} rating={item.rating} />
+                        <RestaurantInfo name={item.name} time={"35-40"} rating={item.rating} />
                     </View>
                 </TouchableOpacity>
             )}

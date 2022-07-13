@@ -7,7 +7,6 @@ import { TouchableOpacity } from 'react-native'
 const SearchBar = ({ setCity }) => {
     const [text, onChangeText] = React.useState("Newyork");
 
-
     return (
 
         setCity(text),
@@ -21,15 +20,13 @@ const SearchBar = ({ setCity }) => {
 
             }
             }
-
         >
             <TextInput
                 onSubmitEditing={(event) => onChangeText(event.nativeEvent.text)}
-                placeholder={"Type Location Here"}
+                placeholder={text}
 
                 style={{
                     alignSelf: 'center',
-
                     backgroundColor: '#eee',
                     borderRadius: 20,
                     width: '90%',

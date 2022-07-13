@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 const HomeHeader = (props) => {
 
     return (
-        <View style={{ flexDirection: 'row', justifyContent: 'center', paddingTop: 5 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', paddingTop:"10%" }}>
             <HeaderButton text={"Delivery"}
                 btnColor={"black"}
                 textColor={"white"}
