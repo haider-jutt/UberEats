@@ -7,6 +7,7 @@ import Grocery from "./screens/Grocery";
 import Browse from "./screens/Browse";
 import Orders from "./screens/Orders";
 import Home from "./screens/Home";
+import Completion from "./screens/Completion";
 import About from "./screens/About";
 import { Provider } from "react-redux";
 import configureStore from "./Redux/store";
@@ -25,6 +26,7 @@ export default function App() {
       <Stack.Screen name="Browse" component={Browse} />
       <Stack.Screen name="Grocery" component={Grocery} />
       <Stack.Screen name="Account" component={Account} />
+      <Stack.Screen name="Completion" component={Completion} />
       
     </Stack.Navigator>
   </NavigationContainer>

@@ -3,27 +3,27 @@ import { useEffect } from "react";
 import React, { useState } from "react";
 import { Divider } from 'react-native-paper';
 import { useSelector } from "react-redux";
-//import firebase from "../../firebase";
-
-
+import { firebaseConfig } from "../../firebase";
+import firebase from "firebase/compat/app";
+import { useNavigation } from "@react-navigation/native";
 
 const ViewCart = ({restaurantName}) => {
 const [modelVisible,setModelVisible]=useState(false);
 const items=useSelector((state)=>state.cartReducer.selectedItems.items)
 const total=items.map((items)=>Number(items.price.replace("$",""))).reduce((prev,curr)=>prev+curr,0)
+const navigation=useNavigation();
+const AddOrderstoFirebase=()=>{
+  const db=firebase.firestore();
+  
+  db.collection("orders").add({
+    items:items,
+    restaurantName:restaurantName,
+    createdAt:Date()//TO STORE TIME STAMPS IN DB
+  })
+  setModelVisible(false);
+  navigation.navigate("Completion")
 
-
-// const AddOrderstoFirebase=()=>{
-
-//   const db=firebase.firestore();
-//   db.collection("orders").add({
-//     items:items,
-//     restaurantName:restaurantName,
-//     createdAt:firebase.firestore.FieldValue.serverTimeStamp() //TO STORE TIME STAMPS IN DB
-//   })
-//   setModelVisible(false);
-
-// }
+}
 
 const checkoutModalContent = () => {
   const renderItem = ({ item }) => (
@@ -91,7 +91,7 @@ const checkoutModalContent = () => {
           borderRadius:30,
           flexDirection:'row'
           }}
-          onPress={()=>{setModelVisible(false)}}
+          onPress={()=>{AddOrderstoFirebase()}}
           >
         <Text  style={{color:'white',paddingRight:20,fontSize:20}}>Checkout</Text>
         <Text style={{color:'white',fontSize:20}}>${total}</Text>
