@@ -16,7 +16,6 @@ const SignIn = ({ navigation }) => {
         navigation.replace("Home")
       }
     })
-
     return unsubscribe
   }, [])
 
@@ -38,7 +37,7 @@ const SignIn = ({ navigation }) => {
     navigation.navigate('SignUp')
   };
   const onForgetPassword = () => {
-    navigation.navigate('ForgetPassword')
+    alert("Then try to Remember Idiot \n\nI'am Busy");
   };
   const social_login = () => {
     alert("Social API Not Connected");
@@ -48,7 +47,7 @@ const SignIn = ({ navigation }) => {
 
     <ScrollView style={styles.container}>
 
-      <Image style={styles.redmilogo} source={require('../../assets/redmi_logo.png')} />
+      <Image style={styles.redmilogo} source={require('../../assets/uberlogo.png')} />
       <CustomInput
         placeholder="email"
         value={email}
@@ -81,6 +80,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   redmilogo: {
+    margin:50,
     alignSelf: "center",
     width: 100,
     height: 100,

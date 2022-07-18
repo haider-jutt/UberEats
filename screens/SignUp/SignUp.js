@@ -6,10 +6,9 @@ import { firebaseConfig } from '../../firebase';
 import firebase from 'firebase/compat/app';
 import { auth } from '../../firebase';
 import { useEffect } from 'react';
-
-
-const SignUp = ({navigation}) => {
-  
+import { useNavigation } from '@react-navigation/native';
+const SignUp = () => {
+  const navigation=useNavigation();
   const [username, setUsername] = useState('');
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,6 +21,7 @@ const SignUp = ({navigation}) => {
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);
+        navigation.navigate("SignIn")
       })
       .catch(error => alert(error.message))
   }

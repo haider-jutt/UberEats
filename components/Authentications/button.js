@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
       borderColor:"#f5f5f5",
       borderWidth:1,
       padding:14,
-      borderRadius:5,
-      backgroundColor:"#f07d20"
+      borderRadius:15,
+      backgroundColor:"black"
 
   },
   button_social_login_google:{

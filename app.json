@@ -4,12 +4,13 @@
     "slug": "UberEats",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon2.png",
+    "icon": "./assets/uberlogo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash1.png",
+      "image": "./assets/uberlogo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#FFFFFF"
+      
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,13 +23,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/uberlogo.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "UberEats.apk"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/uberlogo.png"
     }
   }
 }
