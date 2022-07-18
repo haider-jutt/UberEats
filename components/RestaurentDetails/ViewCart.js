@@ -21,6 +21,11 @@ const AddOrderstoFirebase=()=>{
     createdAt:Date()//TO STORE TIME STAMPS IN DB
   })
   setModelVisible(false);
+
+  
+const orders =  firestore().collection('orders').get();
+
+  console.log(allOrders);
   navigation.navigate("Completion")
 
 }

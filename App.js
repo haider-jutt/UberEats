@@ -11,7 +11,8 @@ import Completion from "./screens/Completion";
 import About from "./screens/About";
 import { Provider } from "react-redux";
 import configureStore from "./Redux/store";
-
+import SignIn from "./screens/SignIn/SignIn";
+import SignUp from "./screens/SignUp";
 
 export default function App() {
   const store=configureStore();
@@ -19,7 +20,8 @@ export default function App() {
   return (
 <Provider store={store}>
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown:false}}>
+    <Stack.Navigator initialRouteName="SignIn" screenOptions={{headerShown:false}}>
+    <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Orders" component={Orders} />
       <Stack.Screen name="About" component={About} />
@@ -27,6 +29,7 @@ export default function App() {
       <Stack.Screen name="Grocery" component={Grocery} />
       <Stack.Screen name="Account" component={Account} />
       <Stack.Screen name="Completion" component={Completion} />
+      <Stack.Screen name="SignUp" component={SignUp} />
       
     </Stack.Navigator>
   </NavigationContainer>
