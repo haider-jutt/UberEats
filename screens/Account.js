@@ -2,11 +2,21 @@ import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { StyleSheet, Text,Image,TouchableOpacity, View } from 'react-native'
 import { auth } from '../firebase'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Account = () => {
   const navigation = useNavigation()
+  const clearStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+      alert('Storage successfully cleared!');
+    } catch (e) {
+      alert('Failed to clear the async storage.');
+    }
+  };
 
   const handleSignOut = () => {
+    clearStorage();
     auth
       .signOut()
       .then(() => {

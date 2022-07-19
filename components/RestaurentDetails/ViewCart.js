@@ -23,9 +23,9 @@ const AddOrderstoFirebase=()=>{
   setModelVisible(false);
 
   
-const orders =  firestore().collection('orders').get();
+const orders =  firebase.firestore().collection('orders').get();
 
-  console.log(allOrders);
+//  console.log("Orders from cart",orders);
   navigation.navigate("Completion")
 
 }

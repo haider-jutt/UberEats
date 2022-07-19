@@ -6,23 +6,17 @@ import { firebaseConfig } from '../../firebase';
 import firebase from 'firebase/compat/app';
 import { auth } from '../../firebase';
 import { useEffect } from 'react';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const SignIn = ({ navigation }) => {
-
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        navigation.replace("Home")
-      }
-    })
-    return unsubscribe
-  }, [])
 
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [storageDataList, setStorageDataList] = useState('');
+
+
   const handleLogin = () => {
+    addItemToList()
     auth
       .signInWithEmailAndPassword(email, password)
       .then(userCredentials => {
@@ -32,12 +26,23 @@ const SignIn = ({ navigation }) => {
       })
       .catch(error => alert(error.message))
   };
+ 
+  const addItemToList = async () => {
+    try {
+      
+      await AsyncStorage.setItem('user_tocken', email);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
   const onSignUp = () => {
     navigation.navigate('SignUp')
   };
   const onForgetPassword = () => {
     alert("Then try to Remember Idiot \n\nI'am Busy");
+    
   };
   const social_login = () => {
     alert("Social API Not Connected");
