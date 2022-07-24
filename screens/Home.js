@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, RefreshControl,View } from "react-native";
 import { useEffect } from "react";
 import React, { useState } from "react";
 import HomeHeader from "../components/HomeComponents/HomeHeader";
@@ -8,6 +8,12 @@ import RestaurantItems from "../components/HomeComponents/RestaurantItems";
 import { locatRestarurant } from "../components/HomeComponents/API";
 import BottomTab from "../components/HomeComponents/BottomTab";
 
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+
 const YELP_API_KEY =
   "sgrhPOijkSTNlhYhdh0givfvTM8ot_45qvD8KVMLJUtxeGntpR7OZyoN-3YDkCmFW6Bzn0Uy2PheW8VpskGw-T6JntUa4YR6JWEzSdyVmhUbZnTm2hMSw8QktPDHYnYx";
 const Home = ({navigation}) => {
@@ -15,6 +21,7 @@ const Home = ({navigation}) => {
   const [restaurantsData, setRestaurantsData] = useState(locatRestarurant);
   const [city, setCity] = useState("Newyork");
   const [activeTab, setActiveTab] = useState("Delivery");
+  const [refreshing, setRefreshing] = useState(false);
 
   //Yepl Api Code Starts
   const getRestaurantsFromYelp = () => {
@@ -36,10 +43,20 @@ const Home = ({navigation}) => {
       );
   };
 
-  useEffect(() => {
+  useEffect(() => {  
     getRestaurantsFromYelp();
   }, [city, activeTab]);
-  //Yepl Api Code Starts
+
+  useEffect(() => {
+    getRestaurantsFromYelp();
+  }, [refreshing]);
+  
+  
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   return (
     <View style={{ backgroundColor: "#eee", flex: 1, }}>
       <View style={{ backgroundColor: "white" }}>
@@ -48,7 +65,15 @@ const Home = ({navigation}) => {
       </View>
 
       <Catagories />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView 
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
+      >
         <RestaurantItems restaurantsData={restaurantsData}  navigation={navigation}/>
       </ScrollView>
       <BottomTab   navigation={navigation}/>

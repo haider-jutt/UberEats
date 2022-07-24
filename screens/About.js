@@ -1,10 +1,14 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { useEffect } from "react";
+import { ScrollView,RefreshControl, StyleSheet, Text, View } from "react-native";
+
 import React, { useState } from "react";
 import RestaurantInfo from "../components/RestaurentDetails/RestaurantInfo";
 import { Divider,  } from 'react-native-paper';
 import MenuItem from "../components/RestaurentDetails/MenuItems";
 import ViewCart from "../components/RestaurentDetails/ViewCart";
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 const foods = [
   {
     title: "Chilaquiles",
@@ -95,11 +99,24 @@ const foods = [
   ];
 
 const About = ({ route, navigation }) => {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   return (
    <View style={{flex:1}}>
 <RestaurantInfo route={route}/>
 <Divider  style={{height:1.8}}/>
-<ScrollView >
+<ScrollView 
+refreshControl={
+  <RefreshControl
+    refreshing={refreshing}
+    onRefresh={onRefresh}
+  />
+}
+>
 <MenuItem foods={foods} restaurantName={route.params.name}/>
 </ScrollView>
 <ViewCart restaurantName={route.params.name} />
