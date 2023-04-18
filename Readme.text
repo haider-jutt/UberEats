@@ -1,0 +1,10 @@
+YELP_API_KEY:  "sgrhPOijkSTNlhYhdh0givfvTM8ot_45qvD8KVMLJUtxeGntpR7OZyoN-3YDkCmFW6Bzn0Uy2PheW8VpskGw-T6JntUa4YR6JWEzSdyVmhUbZnTm2hMSw8QktPDHYnYx";
+
+Login to Yelp:
+Seach catagories Resturant:
+then get the specfic yelpUrl:
+then call the api with yelpUrl and specfic tokens
+
+Setup:
+  install expo in you PC: see docs
+  install the packages: npm i -f
